@@ -1,10 +1,21 @@
-import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { StatusBar, StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StatusBar, StyleSheet, View, SafeAreaView } from "react-native";
 import { Searchbar } from "react-native-paper";
 import React, { useState } from "react";
+import { RestaurantInfo } from "../components/restaurant-info-card.component";
 
 export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const mockRestaurant = {
+    name: "Some random restaurant",
+    icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    photos: [
+      "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    ],
+    address: "100 some random street",
+    openingHours: true,
+    rating: 4,
+    isClosedTemporarily: true,
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.search}>
@@ -15,8 +26,7 @@ export const RestaurantScreen = () => {
         />
       </View>
       <View style={styles.list}>
-        <Text>List</Text>
-        <ExpoStatusBar style="auto" />
+        <RestaurantInfo restaurant={mockRestaurant} />
       </View>
     </SafeAreaView>
   );
