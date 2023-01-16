@@ -1,7 +1,6 @@
 import React from "react";
-import { Text } from "react-native";
 import { Card } from "react-native-paper";
-import { StyleSheet } from "react-native";
+import * as S from "./restaurant-info-card.component.styles";
 interface RestaurantInfoProps {
   restaurant: {
     name: string;
@@ -25,24 +24,11 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
     isClosedTemporarily,
   } = restaurant;
   return (
-    <Card elevation={5} style={styles.card}>
-      <Card.Cover key={name} source={{ uri: photos[0] }} style={styles.cover} />
+    <S.RestaurantCard elevation={5}>
+      <S.RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Card.Content>
-        <Text style={styles.title}>{name}</Text>
+        <S.Title>{name}</S.Title>
       </Card.Content>
-    </Card>
+    </S.RestaurantCard>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "white",
-  },
-  cover: {
-    padding: 16,
-    backgroundColor: "white",
-  },
-  title: {
-    padding: 16,
-  },
-});
