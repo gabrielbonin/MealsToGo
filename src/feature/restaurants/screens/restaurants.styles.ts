@@ -3,7 +3,7 @@ import { View, StatusBar, SafeAreaView } from "react-native";
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  margin-top: ${StatusBar.currentHeight}px;
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
 `;
 
 export const SearchContainer = styled(View)`
