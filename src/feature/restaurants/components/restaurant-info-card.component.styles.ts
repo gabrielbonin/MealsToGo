@@ -6,6 +6,7 @@ export const Title = styled(Text)`
   padding: 12px;
   font-weight: bold;
   font-size: 14px;
+  color: ${(props) => props.theme.colors.ui.primary};
 `;
 
 export const RestaurantCard = styled(Card)``;
