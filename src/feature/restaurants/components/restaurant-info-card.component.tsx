@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "react-native-paper";
 import * as S from "./restaurant-info-card.component.styles";
 interface RestaurantInfoProps {
   restaurant: {
@@ -26,9 +25,10 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
   return (
     <S.RestaurantCard elevation={5}>
       <S.RestaurantCardCover key={name} source={{ uri: photos[0] }} />
-      <Card.Content>
+      <S.Info>
         <S.Title>{name}</S.Title>
-      </Card.Content>
+        <S.Address>{address}</S.Address>
+      </S.Info>
     </S.RestaurantCard>
   );
 };
