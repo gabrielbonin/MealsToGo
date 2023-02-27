@@ -15,6 +15,6 @@ export const SearchContainer = styled(View)`
 
 export const ListContainer = styled(View)`
   padding: ${space[4]};
-  background-color: ${colors.bg.secondary};
+  background-color: ${colors.bg.primary};
   flex: 1;
 `;

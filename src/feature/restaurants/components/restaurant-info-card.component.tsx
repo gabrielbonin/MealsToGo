@@ -46,7 +46,17 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
             {isClosedTemporarily && (
               <Text variant="error">TEMPORARILY CLOSED</Text>
             )}
-            {isOpenNow && <S.OpenIcon xml={open} width={20} height={20} />}
+            {isOpenNow && (
+              <Spacer
+                position="left"
+                size="large"
+                children={
+                  <>
+                    <S.OpenIcon xml={open} width={20} height={20} />
+                  </>
+                }
+              />
+            )}
             <Spacer
               position="left"
               size="large"

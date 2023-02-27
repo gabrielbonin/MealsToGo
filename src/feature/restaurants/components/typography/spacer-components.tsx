@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../../../../infrastructure/theme";
@@ -9,7 +9,7 @@ type Size = "small" | "medium" | "large";
 interface SpacerProps extends View {
   position: Position;
   size: Size;
-  children: React.ReactNode;
+  children: ReactElement;
 }
 
 const sizeVariant = {
