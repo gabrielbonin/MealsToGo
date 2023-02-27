@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import { SvgXml } from "react-native-svg";
 
 import { space } from "../../../infrastructure/theme/spacing";
@@ -46,4 +46,9 @@ export const SectionEnd = styled(View)`
   flex: 1;
   flex-direction: row;
   justify-content: flex-end;
+`;
+
+export const Icon = styled(Image)`
+  width: 15px;
+  height: 15px;
 `;

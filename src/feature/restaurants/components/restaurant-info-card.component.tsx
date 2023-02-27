@@ -2,7 +2,8 @@ import React from "react";
 import * as S from "./restaurant-info-card.component.styles";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
-import { Text } from "react-native";
+import { Text } from "../components/typography/text-component";
+import { Spacer } from "../components/typography/spacer-components";
 interface RestaurantInfoProps {
   restaurant: {
     name: string;
@@ -22,7 +23,7 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
     icon,
     photos,
     address,
-    openingHours,
+    openingHours = true,
     rating = 3,
     isClosedTemporarily = true,
     isOpenNow = true,
@@ -34,7 +35,7 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
     <S.RestaurantCard elevation={5}>
       <S.RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <S.Info>
-        <S.Title>{name}</S.Title>
+        <Text variant="label">{name}</Text>
         <S.Section>
           <S.Rating>
             {ratingArray.map((_, i) => (
@@ -42,8 +43,23 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
             ))}
           </S.Rating>
           <S.SectionEnd>
-            {isClosedTemporarily && <Text>Temporarily Closed</Text>}
+            {isClosedTemporarily && (
+              <Text variant="error">TEMPORARILY CLOSED</Text>
+            )}
             {isOpenNow && <S.OpenIcon xml={open} width={20} height={20} />}
+            <Spacer
+              position="left"
+              size="large"
+              children={
+                <>
+                  <S.Icon
+                    source={{
+                      uri: icon,
+                    }}
+                  />
+                </>
+              }
+            />
           </S.SectionEnd>
         </S.Section>
         <S.Address>{address}</S.Address>

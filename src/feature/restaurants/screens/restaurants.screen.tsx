@@ -13,6 +13,7 @@ export const RestaurantScreen = () => {
     ],
     address: "100 some random street",
     openingHours: true,
+    isOpenNow: true,
     rating: 4,
     isClosedTemporarily: true,
   };
