@@ -8,7 +8,7 @@ interface RestaurantInfoProps {
   restaurant: {
     name: string;
     icon: string;
-    photos: string[];
+    photos: string;
     address: string;
     openingHours: boolean;
     rating: number;
@@ -33,7 +33,12 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
 
   return (
     <S.RestaurantCard elevation={5}>
-      <S.RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <S.RestaurantCardCover
+        key={name}
+        source={{
+          uri: "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+        }}
+      />
       <S.Info>
         <Text variant="label">{name}</Text>
         <S.Section>

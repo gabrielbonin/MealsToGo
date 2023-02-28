@@ -16,7 +16,9 @@ export const Address = styled(Text)`
   font-family: ${fonts.body};
 `;
 
-export const RestaurantCard = styled(Card)``;
+export const RestaurantCard = styled(Card)`
+  background-color: ${(props) => props.theme.colors.bg.primary};
+`;
 
 export const RestaurantCardCover = styled(Card.Cover)``;
 

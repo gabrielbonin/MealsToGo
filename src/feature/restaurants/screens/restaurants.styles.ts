@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
-import { View, StatusBar, SafeAreaView } from "react-native";
+import { View, StatusBar, SafeAreaView, FlatList } from "react-native";
 
-import { colors } from "../../../infrastructure/theme/colors";
 import { space } from "../../../infrastructure/theme/spacing";
 
 export const Container = styled(SafeAreaView)`
@@ -13,8 +12,8 @@ export const SearchContainer = styled(View)`
   padding: ${space[3]};
 `;
 
-export const ListContainer = styled(View)`
-  padding: ${space[4]};
-  background-color: ${colors.bg.primary};
-  flex: 1;
-`;
+export const RestaurantsList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
