@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
-import { theme } from "../../../../infrastructure/theme";
+import { theme } from "../../../infrastructure/theme";
 
 type Position = "top" | "bottom" | "left" | "right";
 type Size = "small" | "medium" | "large";

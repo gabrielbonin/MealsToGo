@@ -1,9 +1,9 @@
 import { Searchbar } from "react-native-paper";
 import React, { useState } from "react";
 import { RestaurantInfo } from "../components/restaurant-info-card.component";
-import { FlatList } from "react-native";
 import * as S from "./restaurants.styles";
-import { Spacer } from "../components/typography/spacer-components";
+import { Spacer } from "../../components/typography/spacer-components";
+import { SafeArea } from "../../components/util/safe-area";
 
 export const RestaurantScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -69,7 +69,7 @@ export const RestaurantScreen = () => {
     },
   ];
   return (
-    <S.Container>
+    <SafeArea>
       <S.SearchContainer>
         <Searchbar
           placeholder="Search"
@@ -89,6 +89,6 @@ export const RestaurantScreen = () => {
         }}
         keyExtractor={(item) => item.name}
       />
-    </S.Container>
+    </SafeArea>
   );
 };

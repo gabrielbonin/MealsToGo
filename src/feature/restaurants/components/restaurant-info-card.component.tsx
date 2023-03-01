@@ -2,8 +2,8 @@ import React from "react";
 import * as S from "./restaurant-info-card.component.styles";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
-import { Text } from "../components/typography/text-component";
-import { Spacer } from "../components/typography/spacer-components";
+import { Text } from "../../components/typography/text-component";
+import { Spacer } from "../../components/typography/spacer-components";
 interface RestaurantInfoProps {
   restaurant: {
     name: string;
