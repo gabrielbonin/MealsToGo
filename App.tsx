@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import { SafeArea } from "./src/feature/components/util/safe-area";
 import { Ionicons } from "@expo/vector-icons";
+import { restaurantsRequest } from "./src/services/restaurants/restaurants.service";
 
 import {
   useFonts as useOswald,
@@ -24,6 +25,7 @@ export default function App() {
   };
 
   const createScreenOptions = ({ route }: any) => {
+    restaurantsRequest();
     const iconName = TAB_ICON[route.name];
     return {
       tabBarIcon: ({ size, color }) => (
