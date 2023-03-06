@@ -4,39 +4,34 @@ import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Text } from "../../components/typography/text-component";
 import { Spacer } from "../../components/typography/spacer-components";
-interface RestaurantInfoProps {
-  restaurant: {
-    name: string;
-    icon: string;
-    photos: string;
-    address: string;
-    openingHours: boolean;
-    rating: number;
-    isClosedTemporarily: boolean;
-    isOpenNow: boolean;
-  };
-}
+import { Restaurant } from "../../../services/restaurants/model";
 
-export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
-  const {
-    name,
-    icon,
-    photos,
-    address,
-    openingHours = true,
-    rating = 3,
-    isClosedTemporarily = true,
-    isOpenNow = true,
-  } = restaurant;
-
-  const ratingArray = Array.from(new Array(Math.floor(rating)));
+export const RestaurantInfo = ({
+  business_status,
+  geometry,
+  icon,
+  name,
+  opening_hours,
+  photos,
+  place_id,
+  plus_code,
+  price_level,
+  rating,
+  reference,
+  scope,
+  types,
+  user_ratings_total,
+  vicinity,
+}: Restaurant) => {
+  // const ratingArray = Array.from(new Array(Math.floor(rating)));
+  const ratingArray = [0, 0, 0, 0, 0];
 
   return (
     <S.RestaurantCard elevation={5}>
       <S.RestaurantCardCover
         key={name}
         source={{
-          uri: "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+          uri: photos,
         }}
       />
       <S.Info>
@@ -48,10 +43,8 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
             ))}
           </S.Rating>
           <S.SectionEnd>
-            {isClosedTemporarily && (
-              <Text variant="error">TEMPORARILY CLOSED</Text>
-            )}
-            {isOpenNow && (
+            {business_status && <Text variant="error">TEMPORARILY CLOSED</Text>}
+            {opening_hours && (
               <Spacer
                 position="left"
                 size="large"
@@ -77,7 +70,7 @@ export const RestaurantInfo = ({ restaurant }: RestaurantInfoProps) => {
             />
           </S.SectionEnd>
         </S.Section>
-        <S.Address>{address}</S.Address>
+        <S.Address>{"address"}</S.Address>
       </S.Info>
     </S.RestaurantCard>
   );

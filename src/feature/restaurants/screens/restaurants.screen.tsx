@@ -1,75 +1,27 @@
 import { Searchbar } from "react-native-paper";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RestaurantInfo } from "../components/restaurant-info-card.component";
 import * as S from "./restaurants.styles";
 import { Spacer } from "../../components/typography/spacer-components";
 import { SafeArea } from "../../components/util/safe-area";
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { ActivityIndicator } from "react-native-paper";
 
 export const RestaurantScreen = () => {
+  const { error, isLoading, restaurants } = useContext(RestaurantsContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const mockRestaurant = [
-    {
-      name: "Some random restaurant",
-      icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      photos:
-        "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-      address: "100 some random street",
-      openingHours: true,
-      isOpenNow: true,
-      rating: 4,
-      isClosedTemporarily: true,
-    },
-    {
-      name: "Some random restaurant 2",
-      icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      photos:
-        "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-
-      address: "100 some random street",
-      openingHours: true,
-      isOpenNow: true,
-      rating: 4,
-      isClosedTemporarily: true,
-    },
-    {
-      name: "Some random restaurant 3",
-      icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      photos:
-        "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-
-      address: "100 some random street",
-      openingHours: true,
-      isOpenNow: true,
-      rating: 4,
-      isClosedTemporarily: true,
-    },
-    {
-      name: "Some random restaurant 4",
-      icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      photos:
-        "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-
-      address: "100 some random street",
-      openingHours: true,
-      isOpenNow: true,
-      rating: 4,
-      isClosedTemporarily: true,
-    },
-    {
-      name: "Some random restaurant 5",
-      icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      photos:
-        "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-
-      address: "100 some random street",
-      openingHours: true,
-      isOpenNow: true,
-      rating: 4,
-      isClosedTemporarily: true,
-    },
-  ];
+  console.log("RESTAURANTES: ", restaurants);
+  console.log("ERROR: ", error);
   return (
     <SafeArea>
+      {isLoading && (
+        <ActivityIndicator
+          animating={true}
+          color="#115881"
+          size="large"
+          style={{ position: "absolute", top: "50%", left: "50%" }}
+        />
+      )}
       <S.SearchContainer>
         <Searchbar
           placeholder="Search"
@@ -79,11 +31,11 @@ export const RestaurantScreen = () => {
       </S.SearchContainer>
 
       <S.RestaurantsList
-        data={mockRestaurant}
-        renderItem={() => {
+        data={restaurants}
+        renderItem={({ item }) => {
           return (
             <Spacer position="bottom" size="large">
-              <RestaurantInfo restaurant={mockRestaurant} />
+              <RestaurantInfo restaurant={item} />
             </Spacer>
           );
         }}
