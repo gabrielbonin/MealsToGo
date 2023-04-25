@@ -3,8 +3,8 @@ import { Card } from "react-native-paper";
 import { Text, View, Image } from "react-native";
 import { SvgXml } from "react-native-svg";
 
-import { space } from "../../../infrastructure/theme/spacing";
-import { fonts, fontSizes } from "../../../infrastructure/theme/fonts";
+import { space } from "../../../../infrastructure/theme/spacing";
+import { fonts, fontSizes } from "../../../../infrastructure/theme/fonts";
 
 export const Title = styled(Text)`
   font-size: ${fontSizes.body};

@@ -13,6 +13,8 @@ export interface RestaurantTypes {
 
 export interface Restaurant {
   business_status: string;
+  isOpenNow: boolean;
+  isClosedTemporarily: boolean;
   geometry: {
     location: {
       lat: number;
@@ -34,14 +36,7 @@ export interface Restaurant {
   opening_hours: {
     open_now: boolean;
   };
-  photos: [
-    {
-      height: number;
-      html_attributions: string[];
-      photo_reference: string;
-      width: number;
-    }
-  ];
+  photos: string;
   place_id: string;
   plus_code: {
     compound_code: string;
@@ -54,4 +49,29 @@ export interface Restaurant {
   types: string[];
   user_ratings_total: number;
   vicinity: string;
+  address: string;
+}
+
+export interface Location {
+  results: Result[];
+  status?: string;
+}
+
+export interface Result {
+  geometry: Geometry;
+}
+
+export interface Geometry {
+  location: Coordinate;
+  viewport: Viewport;
+}
+
+export interface Coordinate {
+  lat: string;
+  lng: string;
+}
+
+export interface Viewport {
+  northeast: Coordinate;
+  southwest: Coordinate;
 }

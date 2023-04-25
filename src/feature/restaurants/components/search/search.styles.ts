@@ -1,19 +1,12 @@
 import styled from "styled-components/native";
-import { View, FlatList } from "react-native";
+import { View } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
-import { space } from "../../../infrastructure/theme/spacing";
-import { Restaurant } from "../../../services/restaurants/model";
+import { space } from "../../../../infrastructure/theme/spacing";
 
 export const SearchContainer = styled(View)`
   padding: ${space[3]};
 `;
-
-export const RestaurantsList = styled(FlatList<Restaurant>).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
 
 export const Loading = styled(ActivityIndicator)`
   position: absolute;

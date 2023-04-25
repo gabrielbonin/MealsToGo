@@ -1,35 +1,21 @@
-import { Searchbar } from "react-native-paper";
-import React, { useContext, useState } from "react";
-import { RestaurantInfo } from "../components/restaurant-info-card.component";
+import React, { useContext } from "react";
+import RestaurantInfo from "../components/restaurant-info-card/restaurant-info-card.component";
 import * as S from "./restaurants.styles";
 import { Spacer } from "../../components/typography/spacer-components";
 import { SafeArea } from "../../components/util/safe-area";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
-import { ActivityIndicator } from "react-native-paper";
+import { colors } from "../../../infrastructure/theme/colors";
+import SearchComponent from "../components/search/search";
 
 export const RestaurantScreen = () => {
-  const { error, isLoading, restaurants } = useContext(RestaurantsContext);
-  const [searchQuery, setSearchQuery] = useState("");
-  console.log("RESTAURANTES: ", restaurants);
-  console.log("ERROR: ", error);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
+
   return (
     <SafeArea>
       {isLoading && (
-        <ActivityIndicator
-          animating={true}
-          color="#115881"
-          size="large"
-          style={{ position: "absolute", top: "50%", left: "50%" }}
-        />
+        <S.Loading animating={true} color={colors.brand.primary} size="large" />
       )}
-      <S.SearchContainer>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-        />
-      </S.SearchContainer>
-
+      <SearchComponent />
       <S.RestaurantsList
         data={restaurants}
         renderItem={({ item }) => {
