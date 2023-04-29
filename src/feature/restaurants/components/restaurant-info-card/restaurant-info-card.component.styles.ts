@@ -18,6 +18,10 @@ export const Address = styled(Text)`
 
 export const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
+  shadow-color: "#000";
+  shadow-offset: 0px 0.5px;
+  shadow-opacity: 0.8;
+  shadow-radius: 2px;
 `;
 
 export const RestaurantCardCover = styled(Card.Cover)``;

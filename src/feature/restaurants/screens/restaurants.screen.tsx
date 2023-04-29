@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Pressable } from "react-native";
+import { TouchableOpacity } from "react-native";
 import RestaurantInfo from "../components/restaurant-info-card/restaurant-info-card.component";
 import * as S from "./restaurants.styles";
 import { Spacer } from "../../components/typography/spacer-components";
@@ -21,11 +21,17 @@ export const RestaurantScreen = ({ navigation }) => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("RestaurantDetailScreen", {
+                  restaurant: item,
+                })
+              }
+            >
               <Spacer position="bottom" size="large">
                 <RestaurantInfo restaurant={item} />
               </Spacer>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name}
