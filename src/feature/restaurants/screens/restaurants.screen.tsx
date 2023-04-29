@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Pressable } from "react-native";
 import RestaurantInfo from "../components/restaurant-info-card/restaurant-info-card.component";
 import * as S from "./restaurants.styles";
 import { Spacer } from "../../components/typography/spacer-components";
@@ -7,7 +8,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 import { colors } from "../../../infrastructure/theme/colors";
 import SearchComponent from "../components/search/search";
 
-export const RestaurantScreen = () => {
+export const RestaurantScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
 
   return (
@@ -20,9 +21,11 @@ export const RestaurantScreen = () => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Spacer position="bottom" size="large">
-              <RestaurantInfo restaurant={item} />
-            </Spacer>
+            <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfo restaurant={item} />
+              </Spacer>
+            </Pressable>
           );
         }}
         keyExtractor={(item) => item.name}
