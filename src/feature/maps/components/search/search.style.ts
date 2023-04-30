@@ -6,10 +6,15 @@ import { space } from "../../../../infrastructure/theme/spacing";
 
 export const SearchContainer = styled(View)`
   padding: ${space[3]};
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  elevation: 5;
+  top: 25px;
   shadow-color: "#000";
   shadow-offset: 0px 0.5px;
-  shadow-opacity: 0.5;
-  shadow-radius: 2px;
+  shadow-opacity: 0.8;
+  shadow-radius: 1px;
 `;
 
 export const Loading = styled(ActivityIndicator)`

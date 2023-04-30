@@ -53,7 +53,7 @@ export interface Restaurant {
 }
 
 export interface Location {
-  results: Result[];
+  result: Result;
   status?: string;
 }
 
@@ -67,8 +67,8 @@ export interface Geometry {
 }
 
 export interface Coordinate {
-  lat: string;
-  lng: string;
+  lat: number;
+  lng: number;
 }
 
 export interface Viewport {

@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 
 import { locationRequest, locationTransform } from "./locations.service";
-import { Coordinate } from "../restaurants/model";
+import { Coordinate, Viewport, Location } from "../restaurants/model";
 
 interface LocationContextProps {
-  location: Coordinate | null;
+  coordinate?: Coordinate | null;
+  viewport?: Viewport | null;
+  location: Location | null;
   isLoading: boolean;
   keyword: string;
   error: any | null;
@@ -12,7 +14,9 @@ interface LocationContextProps {
 }
 
 export const LocationsContext = createContext<LocationContextProps>({
+  coordinate: null,
   location: null,
+  viewport: null,
   keyword: "",
   isLoading: false,
   error: null,
@@ -21,7 +25,7 @@ export const LocationsContext = createContext<LocationContextProps>({
 
 export const LocationsContextProvider = ({ children }: any) => {
   const [keyword, setKeyword] = useState("antwerp");
-  const [location, setLocation] = useState<Coordinate | null>(null);
+  const [data, setData] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -38,7 +42,7 @@ export const LocationsContextProvider = ({ children }: any) => {
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
-        setLocation(result);
+        setData(result.formattedResponse);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -49,7 +53,9 @@ export const LocationsContextProvider = ({ children }: any) => {
   return (
     <LocationsContext.Provider
       value={{
-        location,
+        coordinate: data?.result.geometry.location,
+        viewport: data?.result.geometry.viewport,
+        location: data,
         keyword,
         isLoading,
         error,

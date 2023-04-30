@@ -1,6 +1,5 @@
-import camelize from "camelize-ts";
-
 import { locations } from "./locations";
+import { Location } from "../restaurants/model";
 
 export const locationRequest = (searchTerm: string) => {
   return new Promise((resolve, reject) => {
@@ -12,10 +11,8 @@ export const locationRequest = (searchTerm: string) => {
   });
 };
 
-export const locationTransform = (result) => {
-  const formattedResponse = camelize(result);
-  const { geometry = {} } = formattedResponse.results[0];
-  const { lat, lng } = geometry.location;
+export const locationTransform = (result: Location) => {
+  const formattedResponse = result;
 
-  return { lat, lng };
+  return { formattedResponse };
 };
