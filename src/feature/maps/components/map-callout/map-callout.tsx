@@ -6,11 +6,15 @@ import { CompactRestaurantInfo } from "../../../restaurants/components/compact-r
 
 interface MapCalloutProps {
   restaurant: Restaurant;
+  onPress: () => void;
 }
 
-export const MapCalloutComponent = ({ restaurant }: MapCalloutProps) => {
+export const MapCalloutComponent = ({
+  restaurant,
+  onPress,
+}: MapCalloutProps) => {
   return (
-    <S.MapCalloutView>
+    <S.MapCalloutView onPress={onPress}>
       <CompactRestaurantInfo restaurant={restaurant} />
     </S.MapCalloutView>
   );

@@ -6,10 +6,8 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 
 import * as S from "./map.screen.style";
 import { MapCalloutComponent } from "../components/map-callout/map-callout";
-import { MapCallout } from "react-native-maps";
-import CompactRestaurantInfo from "../../restaurants/components/compact-restaurant-info/compact-restaurant-info";
 
-export const Map = () => {
+export const Map = ({ navigation }) => {
   const [latDelta, setLatDelta] = useState(0);
   const { coordinate, viewport } = React.useContext(LocationsContext);
   const { restaurants } = React.useContext(RestaurantsContext);
@@ -46,6 +44,11 @@ export const Map = () => {
                 <MapCalloutComponent
                   key={restaurant.name}
                   restaurant={restaurant}
+                  onPress={() =>
+                    navigation.navigate("RestaurantDetailScreen", {
+                      restaurant,
+                    })
+                  }
                 />
               </S.MarkerPoint>
             </>
