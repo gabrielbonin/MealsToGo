@@ -11,7 +11,11 @@ interface RestaurantInfoProps {
 }
 
 const RestaurantInfo = (data: RestaurantInfoProps) => {
-  //const ratingArray = Array.from(new Array(Math.floor(data.restaurant.rating)));
+  const ratingArray = new Array(Math.floor(data.restaurant.rating ?? 2)).fill(
+    0
+  );
+  console.log(ratingArray);
+  console.log(data.restaurant.rating);
 
   return (
     <S.RestaurantCard elevation={5}>
@@ -25,14 +29,14 @@ const RestaurantInfo = (data: RestaurantInfoProps) => {
         <Text variant="label">{data.restaurant.name}</Text>
         <S.Section>
           <S.Rating>
-            {/* {ratingArray.map((_, i) => (
+            {ratingArray.map((_, i) => (
               <S.StarIcon
                 key={`star-${data.restaurant.place_id}-${i}`}
                 xml={star}
                 width={20}
                 height={20}
               />
-            ))} */}
+            ))}
           </S.Rating>
           <S.SectionEnd>
             {data.restaurant.isClosedTemporarily && (
