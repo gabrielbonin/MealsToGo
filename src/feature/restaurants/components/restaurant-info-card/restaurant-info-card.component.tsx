@@ -5,6 +5,8 @@ import open from "../../../../../assets/open";
 import { Text } from "../../../components/typography/text-component";
 import { Spacer } from "../../../components/typography/spacer-components";
 import { Restaurant } from "../../../../services/restaurants/model";
+import { FavoriteComponent } from "../../../favourites/favourites";
+import { View } from "react-native";
 
 interface RestaurantInfoProps {
   restaurant: Restaurant;
@@ -19,12 +21,16 @@ const RestaurantInfo = (data: RestaurantInfoProps) => {
 
   return (
     <S.RestaurantCard elevation={5}>
-      <S.RestaurantCardCover
-        key={data.restaurant.name}
-        source={{
-          uri: data.restaurant.photos,
-        }}
-      />
+      <FavoriteComponent restaurant={data.restaurant} />
+      <View>
+        <S.RestaurantCardCover
+          key={data.restaurant.name}
+          source={{
+            uri: data.restaurant.photos,
+          }}
+        />
+      </View>
+
       <S.Info>
         <Text variant="label">{data.restaurant.name}</Text>
         <S.Section>
