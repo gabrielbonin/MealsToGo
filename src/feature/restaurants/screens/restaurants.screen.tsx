@@ -26,7 +26,9 @@ export const RestaurantScreen = ({ navigation }) => {
           setToggle(!toggle);
         }}
       />
-      {toggle && <FavouritesBar favourites={favorites} />}
+      {toggle && (
+        <FavouritesBar favourites={favorites} navigation={navigation} />
+      )}
       <S.RestaurantsList
         data={restaurants}
         renderItem={({ item }) => {

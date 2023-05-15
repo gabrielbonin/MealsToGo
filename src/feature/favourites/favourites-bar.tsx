@@ -8,13 +8,21 @@ import { TouchableOpacity } from "react-native";
 
 interface FavouritesBarProps {
   favourites: Restaurant[];
+  navigation: any;
 }
 
-export const FavouritesBar = ({ favourites }: FavouritesBarProps) => {
+export const FavouritesBar = ({
+  favourites,
+  navigation,
+}: FavouritesBarProps) => {
   return (
     <S.FavouritesWrapper>
       <Spacer variant="left.large">
-        <Text variant="label">Favourites</Text>
+        {favourites && favourites.length ? (
+          <Text variant="label">Favoritos</Text>
+        ) : (
+          <Text variant="label">Sem restaurantes favoritos aqui</Text>
+        )}
       </Spacer>
       <S.FavouriteWrapper>
         <S.FavouritesList
@@ -24,11 +32,12 @@ export const FavouritesBar = ({ favourites }: FavouritesBarProps) => {
           renderItem={({ item }: { item: Restaurant }) => (
             <Spacer position="left" size="large">
               <TouchableOpacity
-                onPress={() =>
+                onPress={() => {
+                  console.log(item);
                   navigation.navigate("RestaurantDetailScreen", {
-                    restaurant,
-                  })
-                }
+                    restaurant: item,
+                  });
+                }}
               >
                 <CompactRestaurantInfo restaurant={item} />
               </TouchableOpacity>
