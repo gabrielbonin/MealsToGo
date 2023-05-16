@@ -15,7 +15,7 @@ export const MapCalloutComponent = ({
 }: MapCalloutProps) => {
   return (
     <S.MapCalloutView onPress={onPress}>
-      <CompactRestaurantInfo restaurant={restaurant} />
+      <CompactRestaurantInfo restaurant={restaurant} isMap />
     </S.MapCalloutView>
   );
 };

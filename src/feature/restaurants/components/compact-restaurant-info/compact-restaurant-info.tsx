@@ -1,22 +1,30 @@
 import React from "react";
+import { Platform } from "react-native";
 
 import * as S from "./compact-restaurant.style";
 import { Restaurant } from "../../../../services/restaurants/model";
 
 interface CompactRestaurantInfoProps {
   restaurant: Restaurant;
+  isMap?: boolean;
 }
 
 export const CompactRestaurantInfo = ({
   restaurant,
+  isMap,
 }: CompactRestaurantInfoProps) => {
+  const isAndroid = Platform.OS === "android" && isMap;
   return (
     <S.Item>
-      <S.CompactImage
-        source={{
-          uri: restaurant.photos,
-        }}
-      />
+      {isAndroid ? (
+        <S.CompactWebview source={{ uri: restaurant.photos }} />
+      ) : (
+        <S.CompactImage
+          source={{
+            uri: restaurant.photos,
+          }}
+        />
+      )}
       <S.TextTitle>{restaurant.name}</S.TextTitle>
     </S.Item>
   );

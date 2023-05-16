@@ -39,7 +39,7 @@ export const FavouritesBar = ({
                   });
                 }}
               >
-                <CompactRestaurantInfo restaurant={item} />
+                <CompactRestaurantInfo restaurant={item} isMap={false} />
               </TouchableOpacity>
             </Spacer>
           )}
