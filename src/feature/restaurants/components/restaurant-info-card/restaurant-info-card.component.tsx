@@ -16,8 +16,6 @@ const RestaurantInfo = (data: RestaurantInfoProps) => {
   const ratingArray = new Array(Math.floor(data.restaurant.rating ?? 2)).fill(
     0
   );
-  console.log(ratingArray);
-  console.log(data.restaurant.rating);
 
   return (
     <S.RestaurantCard elevation={5}>
