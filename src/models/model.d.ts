@@ -75,3 +75,8 @@ export interface Viewport {
   northeast: Coordinate;
   southwest: Coordinate;
 }
+
+export interface Login {
+  email: string;
+  password: string;
+}

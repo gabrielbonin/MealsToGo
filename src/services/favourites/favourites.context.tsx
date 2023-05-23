@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { Restaurant } from "../restaurants/model";
+import { Restaurant } from "../../models/model";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface IFavoritesContext {

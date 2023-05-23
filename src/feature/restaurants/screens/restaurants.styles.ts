@@ -3,7 +3,7 @@ import { View, FlatList } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
 import { space } from "../../../infrastructure/theme/spacing";
-import { Restaurant } from "../../../services/restaurants/model";
+import { Restaurant } from "../../../models/model";
 
 export const SearchContainer = styled(View)`
   padding: ${space[3]};

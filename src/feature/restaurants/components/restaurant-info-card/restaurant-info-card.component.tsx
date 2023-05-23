@@ -4,7 +4,7 @@ import star from "../../../../../assets/star";
 import open from "../../../../../assets/open";
 import { Text } from "../../../components/typography/text-component";
 import { Spacer } from "../../../components/typography/spacer-components";
-import { Restaurant } from "../../../../services/restaurants/model";
+import { Restaurant } from "../../../../models/model";
 import { FavoriteComponent } from "../../../favourites/favourites";
 import { View } from "react-native";
 

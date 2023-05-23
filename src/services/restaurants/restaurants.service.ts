@@ -1,6 +1,6 @@
 import { mockImages, mocks } from "./mock";
 import camelize from "camelize-ts";
-import { Restaurant } from "./model";
+import { Restaurant } from "../../models/model";
 
 export const restaurantsRequest = (location: string) => {
   location = location ? location : "37.7749295,-122.4194155";

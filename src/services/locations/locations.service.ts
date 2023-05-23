@@ -1,5 +1,5 @@
 import { locations } from "./locations";
-import { Location } from "../restaurants/model";
+import { Location } from "../../models/model";
 
 export const locationRequest = (searchTerm: string) => {
   return new Promise((resolve, reject) => {

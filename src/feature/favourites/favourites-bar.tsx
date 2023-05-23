@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./favourites-bar.style";
 import CompactRestaurantInfo from "../restaurants/components/compact-restaurant-info/compact-restaurant-info";
-import { Restaurant } from "../../services/restaurants/model";
+import { Restaurant } from "../../models/model";
 import { Spacer } from "../components/typography/spacer-components";
 import { Text } from "../components/typography/text-component";
 import { TouchableOpacity } from "react-native";

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import * as S from "./favourites.style";
 
 import { FavoritesContext } from "../../services/favourites/favourites.context";
-import { Restaurant } from "../../services/restaurants/model";
+import { Restaurant } from "../../models/model";
 
 interface FavoriteProps {
   restaurant: Restaurant;

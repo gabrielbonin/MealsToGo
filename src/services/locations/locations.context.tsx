@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
 import { locationRequest, locationTransform } from "./locations.service";
-import { Coordinate, Viewport, Location } from "../restaurants/model";
+import { Coordinate, Viewport, Location } from "../../models/model";
 
 interface LocationContextProps {
   coordinate?: Coordinate | null;

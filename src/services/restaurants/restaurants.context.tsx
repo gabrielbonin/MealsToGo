@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
-import { Restaurant } from "./model";
+import { Restaurant } from "../../models/model";
 
 import {
   restaurantsRequest,

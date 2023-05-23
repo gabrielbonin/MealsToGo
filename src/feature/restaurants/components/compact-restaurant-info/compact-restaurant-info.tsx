@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 
 import * as S from "./compact-restaurant.style";
-import { Restaurant } from "../../../../services/restaurants/model";
+import { Restaurant } from "../../../../models/model";
 
 interface CompactRestaurantInfoProps {
   restaurant: Restaurant;

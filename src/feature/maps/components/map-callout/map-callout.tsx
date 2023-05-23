@@ -1,7 +1,7 @@
 import React from "react";
 
 import * as S from "./map-callout.style";
-import { Restaurant } from "../../../../services/restaurants/model";
+import { Restaurant } from "../../../../models/model";
 import { CompactRestaurantInfo } from "../../../restaurants/components/compact-restaurant-info/compact-restaurant-info";
 
 interface MapCalloutProps {
