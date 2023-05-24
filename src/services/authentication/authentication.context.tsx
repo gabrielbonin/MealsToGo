@@ -1,11 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 
 import {
   loginRequest,
   registerRequest,
 } from "../authentication/authentication.service";
 
-import { Auth, onAuthStateChanged } from "firebase/auth";
+import { Auth } from "firebase/auth";
 
 interface AuthenticationContextProps {
   user: any | null;
@@ -19,6 +19,7 @@ interface AuthenticationContextProps {
     password: string,
     repeatPassword: string
   ) => void;
+  onLogout: (auth: Auth) => void;
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextProps>({
@@ -28,6 +29,7 @@ export const AuthenticationContext = createContext<AuthenticationContextProps>({
   isLoading: false,
   onLogin: () => {},
   onRegister: () => {},
+  onLogout: () => {},
 });
 
 export const AuthenticationContextProvider = ({ children }: any) => {
@@ -72,7 +74,13 @@ export const AuthenticationContextProvider = ({ children }: any) => {
     }
   };
 
-  console.log("user: ", user);
+  const onLogout = async (auth: Auth) => {
+    try {
+      await auth.signOut();
+      setUser(null);
+    } catch (error) {}
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -82,6 +90,7 @@ export const AuthenticationContextProvider = ({ children }: any) => {
         isAuth: !!user,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}

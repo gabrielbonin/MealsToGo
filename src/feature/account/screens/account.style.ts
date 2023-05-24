@@ -44,3 +44,11 @@ export const Title = styled.Text`
   align-self: center;
   margin-top: 8px;
 `;
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 80px;
+  padding: ${space[2]};
+`;

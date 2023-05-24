@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { Restaurant } from "../../models/model";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 interface IFavoritesContext {
   favorites: Restaurant[] | [];
@@ -16,34 +17,35 @@ export const FavoritesContext = createContext<IFavoritesContext>({
 
 export const FavoritesContextProvider = ({ children }: any) => {
   const [favorites, setFavorites] = useState<Restaurant[] | []>([]);
+  const { user } = useContext(AuthenticationContext);
 
-  const saveFavorites = async (value: Restaurant[] | []) => {
+  const saveFavorites = async (value: Restaurant[] | [], uid: any) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@favorites", jsonValue);
-    } catch (e) {
-      console.log("error storing", e);
-    }
+      await AsyncStorage.setItem(`@favorites-${uid}`, jsonValue);
+    } catch (e) {}
   };
 
-  const getFavorites = async () => {
+  const getFavorites = async (uid: any) => {
     try {
-      const value = await AsyncStorage.getItem("@favorites");
+      const value = await AsyncStorage.getItem(`@favorites-${uid}`);
       if (value !== null) {
         setFavorites(JSON.parse(value));
       }
-    } catch (e) {
-      console.log("error reading", e);
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {
-    getFavorites();
-  }, []);
+    if (user) {
+      getFavorites(user.uid);
+    }
+  }, [user]);
 
   useEffect(() => {
-    saveFavorites(favorites);
-  }, [favorites]);
+    if (user) {
+      saveFavorites(favorites, user.uid);
+    }
+  }, [favorites, user]);
 
   const add = (restaurant: Restaurant) => {
     setFavorites([...favorites, restaurant]);

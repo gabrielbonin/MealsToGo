@@ -33,7 +33,6 @@ export const FavouritesBar = ({
             <Spacer position="left" size="large">
               <TouchableOpacity
                 onPress={() => {
-                  console.log(item);
                   navigation.navigate("RestaurantDetailScreen", {
                     restaurant: item,
                   });

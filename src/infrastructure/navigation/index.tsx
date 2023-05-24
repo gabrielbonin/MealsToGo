@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 export const Navigation = () => {
   const { isAuth } = useContext(AuthenticationContext);
-  console.log(isAuth);
+
   return (
     <NavigationContainer>
       {isAuth ? <AppNavigator /> : <AccountNavigator />}
