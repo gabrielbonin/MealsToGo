@@ -1,15 +1,24 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-import { loginRequest } from "../authentication/authentication.service";
+import {
+  loginRequest,
+  registerRequest,
+} from "../authentication/authentication.service";
 
-import { Login } from "../../models/model";
+import { Auth, onAuthStateChanged } from "firebase/auth";
 
 interface AuthenticationContextProps {
   user: any | null;
   isAuth: boolean;
-  error: any;
+  error: string | null;
   isLoading: boolean;
-  onLogin: (login: Login) => void;
+  onLogin: (auth: Auth, email: string, password: string) => void;
+  onRegister: (
+    auth: Auth,
+    email: string,
+    password: string,
+    repeatPassword: string
+  ) => void;
 }
 
 export const AuthenticationContext = createContext<AuthenticationContextProps>({
@@ -18,26 +27,52 @@ export const AuthenticationContext = createContext<AuthenticationContextProps>({
   error: null,
   isLoading: false,
   onLogin: () => {},
+  onRegister: () => {},
 });
 
 export const AuthenticationContextProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
-  const onLogin = (login: Login) => {
+  const onLogin = async (auth: Auth, email: string, password: string) => {
     setIsLoading(true);
-    loginRequest(login.email, login.password)
-      .then((response: any) => {
-        setIsLoading(false);
-        setUser(response);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(e);
-      });
+    try {
+      await loginRequest(auth, email, password);
+      const responseUser = auth.currentUser;
+      setUser(responseUser);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.toString());
+    }
   };
 
+  const onRegister = async (
+    auth: Auth,
+    email: string,
+    password: string,
+    repeatPassword: string
+  ) => {
+    setIsLoading(true);
+    if (password !== repeatPassword) {
+      setError("Passwords don't match");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      await registerRequest(auth, email, password);
+      const responseUser = auth.currentUser;
+      setUser(responseUser);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.toString());
+    }
+  };
+
+  console.log("user: ", user);
   return (
     <AuthenticationContext.Provider
       value={{
@@ -46,6 +81,7 @@ export const AuthenticationContextProvider = ({ children }: any) => {
         error,
         isAuth: !!user,
         onLogin,
+        onRegister,
       }}
     >
       {children}

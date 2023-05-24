@@ -7,6 +7,7 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <S.AccountBackground>
       <S.AccountCover />
+      <S.Title>Meals To Go</S.Title>
       <S.AccountContainer>
         <S.AuthButton
           mode="contained"
@@ -20,7 +21,7 @@ export const AccountScreen = ({ navigation }) => {
         <Spacer size="large">
           <S.AuthButton
             mode="contained"
-            icon="lock-open-outline"
+            icon="account-plus"
             onPress={() => {
               navigation.navigate("Register");
             }}

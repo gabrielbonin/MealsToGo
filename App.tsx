@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components/native";
 import { Navigation } from "./src/infrastructure/navigation";
 import { theme } from "./src/infrastructure/theme";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import {
   useFonts as useOswald,
@@ -25,25 +25,9 @@ const firebaseConfig = {
   appId: "1:580080714331:web:c0b2990f0fee8388c2b57e",
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+initializeApp(firebaseConfig);
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      signInWithEmailAndPassword(auth, "bonin@gmail.com", "Senha@12345")
-        .then((userCredential) => {
-          console.log(userCredential.user);
-          setIsAuthenticated(true);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 5000);
-  }, []);
-
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -53,10 +37,6 @@ export default function App() {
   });
 
   if (!oswaldLoaded || !latoLoaded) {
-    return null;
-  }
-
-  if (!isAuthenticated) {
     return null;
   }
 

@@ -1,5 +1,25 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  Auth,
+  onAuthStateChanged,
+} from "firebase/auth";
 
-export const loginRequest = async (email: string, password: string) => {
-  signInWithEmailAndPassword(getAuth(), email, password);
+export const loginRequest = async (
+  auth: Auth,
+  email: string,
+  password: string
+) => {
+  await signInWithEmailAndPassword(auth, email, password);
+  console.log("auth: ", auth);
 };
+
+export const registerRequest = async (
+  auth: Auth,
+  email: string,
+  password: string
+) => {
+  await createUserWithEmailAndPassword(auth, email, password);
+};
+
+

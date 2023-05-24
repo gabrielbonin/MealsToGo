@@ -20,7 +20,8 @@ export const AccountCover = styled.View`
 `;
 
 export const AccountContainer = styled.View`
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: ${colors.bg.primary};
+  width: 80%;
   padding: ${space[4]};
   margin-top: ${space[2]};
 `;
@@ -28,4 +29,18 @@ export const AccountContainer = styled.View`
 export const AuthButton = styled(Button)`
   background-color: ${colors.brand.primary};
   padding: ${space[2]};
+`;
+
+export const ErrorText = styled.Text`
+  font-size: 12px;
+  color: red;
+  align-self: center;
+  margin-top: 8px;
+`;
+
+export const Title = styled.Text`
+  font-size: 30px;
+  color: black;
+  align-self: center;
+  margin-top: 8px;
 `;
