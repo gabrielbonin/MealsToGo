@@ -7,6 +7,8 @@ import { Text } from "../components/typography/text-component";
 import { Spacer } from "../components/typography/spacer-components";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
+import { TouchableOpacity } from "react-native";
+
 import * as S from "./settings.styles";
 
 export const SettingsScreen = ({ navigation }) => {
@@ -14,7 +16,9 @@ export const SettingsScreen = ({ navigation }) => {
   return (
     <SafeArea>
       <S.AvatarContainer>
-        <S.SettingsAvatar />
+        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+          <S.SettingsAvatar />
+        </TouchableOpacity>
         <Spacer position="top" size="large">
           <Text variant="label">{user.email}</Text>
         </Spacer>
