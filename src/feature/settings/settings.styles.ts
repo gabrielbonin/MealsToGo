@@ -16,3 +16,8 @@ export const SettingsAvatar = styled(Avatar.Icon).attrs((props) => ({
   icon: "human",
   backgroundColor: "#2182BD",
 }))``;
+
+export const UserAvatar = styled(Avatar.Image).attrs((props) => ({
+  ...props,
+  size: 180,
+}))``;
