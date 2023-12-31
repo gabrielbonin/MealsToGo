@@ -76,8 +76,8 @@ export const AuthenticationContextProvider = ({ children }: any) => {
 
   const onLogout = async (auth: Auth) => {
     try {
-      await auth.signOut();
       setUser(null);
+      await auth.signOut();
     } catch (error) {}
   };
 
